@@ -12,15 +12,16 @@ const Route = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="Dashboard" component={Dashboard} options={{
+                <Stack.Screen name="Cadastro" component={Cadastro} options={{
                     headerShown: false
                 }} />
                 <Stack.Screen name="Login" component={Login} options={{
                     headerShown: false
                 }} />
-                <Stack.Screen name="Cadastro" component={Cadastro} options={{
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{
                     headerShown: false
                 }} />
+                
                 <Stack.Screen name="Home" component={Home} options={{
                     headerShown: false
                 }} />

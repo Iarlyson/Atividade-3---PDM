@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
-import api from '../../services/api'
+import api from '../../services/api';
+import {Container, UpperTitle, Label, Input, Button} from './styles'
 
 export default function Cadastro() {
 
@@ -24,10 +25,12 @@ export default function Cadastro() {
     }
 
     return (
+        <Container>
+            <UpperTitle>Cadastro de aluno</UpperTitle>
         <>
             <View>
-                <Text>Cadastro de Aluno</Text>
-                <TextInput
+                <Label>Informe o nome:</Label>
+                <Input
                     placeholder='Nome'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={name => setNome(name)}
@@ -35,7 +38,8 @@ export default function Cadastro() {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <TextInput
+                <Label>Informe o Email:</Label>
+                <Input
                     placeholder='E-mail'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={email => setEmail(email)}
@@ -43,19 +47,21 @@ export default function Cadastro() {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <TextInput
+                <Label>Informe o senha:</Label>
+                <Input
                     placeholder='Senha'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={password => setPassword(password)}
                     value={password}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
-                />
+                /><br></br>
                 <TouchableOpacity onPress={() => {
                     Cadastroalunos(name, email, password).then()
                 }}>
-                    <Text>Cadastrar</Text></TouchableOpacity>
+                    <Button>Cadastrar</Button></TouchableOpacity>
             </View>
         </>
+        </Container>
     )
 }
