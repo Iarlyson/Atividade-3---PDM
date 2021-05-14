@@ -17,6 +17,11 @@ export default function Login() {
         Navigation.navigate("Cadastro");
     };
 
+    useEffect(() => {
+        setEmail("");
+        setPassword("");
+    }, []);
+
     function Autenticar(email, password) {
         login(email, password).then();
     }

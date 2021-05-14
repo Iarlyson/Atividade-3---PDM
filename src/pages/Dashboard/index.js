@@ -4,34 +4,52 @@ import {Text, TouchableOpacity} from 'react-native';
 import api from '../../services/api';
 import {Container, UpperTitle, Label, Info} from './styles';
 import {useNavigation} from '@react-navigation/native';
-import { useAuth } from "../../context/AuthContext";
+import {useAuth} from "../../context/AuthContext";
+import {Button} from "../InformaçoesDisciplina/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Dashboard () {
+export default function Dashboard(props) {
 
     const Navigation = useNavigation();
-    const { student } = useAuth();
+    const {student, logout} = useAuth();
 
-    function Disciplina(){
-        Navigation.navigate("Disciplina");
-    };
+    function Disciplina(subject) {
+        AsyncStorage.setItem("InfoDisc", JSON.stringify(subject)).then();
+        Navigation.navigate("InfoDisc", subject);
+    }
+
+    function Logout(){
+        logout();
+        Navigation.navigate("Login");
+    }
 
     return (
         <Container>
-                <UpperTitle>Dashboard Page</UpperTitle>
-                
-                <TouchableOpacity onPress={() => Home()}>
-                    <Button>Logout</Button></TouchableOpacity>
+            <UpperTitle>Dashboard Page</UpperTitle>
 
-                <Label>Nome do Aluno:</Label>
-                <Info>{student.name}</Info>
+            <TouchableOpacity onPress={() => Logout()}>
+                <Button>Logout</Button></TouchableOpacity>
 
-                <Label>Email do Aluno:</Label>
-                <Info>{student.email}</Info>
+            <Label>Nome do Aluno:</Label>
+            <Info>{student.name}</Info>
 
-                <Label>Lista de Disciplinas:</Label>
-                <TouchableOpacity onPress={() => Disciplina()}>
-                    <Info>Disciplina</Info></TouchableOpacity> 
+            <Label>Email do Aluno:</Label>
+            <Info>{student.email}</Info>
 
+            {student.subjects.length ? (
+                <>
+                    <Label>Lista de Disciplinas:</Label>
+                    {student.subjects.map(subject => (
+                        <TouchableOpacity onPress={() => Disciplina(subject)}>
+                            <Info>{subject.name}</Info></TouchableOpacity>
+                    ))}
+
+                </>
+
+            ) : (
+                <Label>Sem Disciplinas Matriculadas</Label>
+
+            )}
         </Container>
 
     )

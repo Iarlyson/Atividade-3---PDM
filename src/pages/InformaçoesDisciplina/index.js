@@ -4,44 +4,49 @@ import {Text, TouchableOpacity} from 'react-native';
 import api from '../../services/api';
 import {Container, UpperTitle, Label, Info, Button} from './styles';
 import {useNavigation} from '@react-navigation/native'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../context/AuthContext";
 
-export default function InfoDisc () {
+export default function InfoDisc (props) {
 
-    const [name, getNome] = useState("");
-    const [email, getEmail] = useState("");
+    const [subject, setSubject] = useState({});
+
     const Navigation = useNavigation();
+    const { logout } = useAuth();
 
     function Home(){
         Navigation.navigate("Home");
-    };
+    }
 
-    useEffect(() =>{
+    function Logout(){
+        logout();
+        Navigation.navigate("Login");
+    }
 
-        async function exibir() {
-            try {
-                await api.get(`discentes`, {
-                    name ,
-                    email
-                })
-            } catch (err) {
-                alert('erro');
-                alert(err);
-            }
-        }
-    })
+    useEffect(() => {
+        AsyncStorage.getItem("InfoDisc").then(result => {
+            setSubject(JSON.parse(result));
+        })
+    }, []);
+
+
+    useEffect(() => {
+        console.log(subject);
+    }, [subject]);
+
 
     return (
         <Container>
                 <UpperTitle>Sobre a disciplina</UpperTitle>
 
-                <TouchableOpacity onPress={() => Home()}>
+                <TouchableOpacity onPress={() => Logout()}>
                     <Button>Logout</Button></TouchableOpacity>
 
                 <Label>Disciplina:</Label>
-                <Info>Nome da disciplina</Info>
+                <Info>{subject.name}</Info>
 
                 <Label>Carga horária:</Label>
-                <Info>Carga horária</Info>
+                <Info>{subject.Workload}</Info>
 
         </Container>
 

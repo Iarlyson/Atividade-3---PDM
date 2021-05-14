@@ -19,7 +19,7 @@ export default function AuthContextComponent({children}) {
             }
         }
         loadStorage().then();
-    });
+    }, []);
 
     async function login(email, password) {
         const response = await api.post('/discentes/auth', {email, password});
