@@ -15,6 +15,10 @@ export default function Dashboard () {
         Navigation.navigate("Disciplina");
     };
 
+    function Home(){
+        Navigation.navigate("Home");
+    };
+
     useEffect(() =>{
 
         async function exibir() {
@@ -34,6 +38,9 @@ export default function Dashboard () {
         <Container>
                 <UpperTitle>Dashboard Page</UpperTitle>
                 
+                <TouchableOpacity onPress={() => Home()}>
+                    <Button>Logout</Button></TouchableOpacity>
+
                 <Label>Nome do Aluno:</Label>
                 <Info>Nome</Info>
 
