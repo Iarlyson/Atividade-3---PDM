@@ -18,4 +18,4 @@ DISCIPLINA: PROGRAMAÇÃO PARA DISPOSITIVOS MÓVEIS.
 
 #### Daniel: JWT token, asyncstorage e contexto;
 #### Iarlyson: Tela de Cadastro e Login;
-#### Jonas: Tela de dashboard e detalhamento da disciplina;
+#### Jonas: Tela de dashboard e detalhamento da disciplina.
