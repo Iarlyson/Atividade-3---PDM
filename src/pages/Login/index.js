@@ -1,36 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import api from '../../services/api'
 import {useNavigation} from '@react-navigation/native'
+import {useAuth} from "../../context/AuthContext";
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const Navigation = useNavigation();
+    const {login, signed, student} = useAuth();
 
-    function Cadastro(){
+    function Cadastro() {
         Navigation.navigate("Cadastro");
     };
 
     function Autenticar(email, password) {
-        try {
-            api.post(`/discentes/auth`, {
-                email,
-                password
-            }).then(function (response) {
-                Navigation.navigate("Home");
-                console.log(response);
-                alert("Autenticado !")
-              }).catch(function (error) {
-                alert('erro ao Autenticado');
-                console.log(error);
-              })
-        } catch (error) {
-            alert("teste "+error);
-        }
+        login(email, password).then();
     }
+
+    useEffect(() => {
+        if (signed) Navigation.navigate("Home");
+    }, [signed, student]);
+
 
     return (
         <>
@@ -56,7 +49,7 @@ export default function Login() {
                     Autenticar(email, password)
                 }}>
                     <Text>Autenticar</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => Cadastro()}>
+                <TouchableOpacity onPress={() => Cadastro()}>
                     <Text>Cadastra-se</Text></TouchableOpacity>
 
             </View>
