@@ -57,7 +57,7 @@ export default function Login() {
                     <TouchableOpacity onPress={() => {
                         Autenticar(email, password)
                     }}>
-                        <Button>Autenticar</Button></TouchableOpacity><br></br>
+                        <Button>Autenticar</Button></TouchableOpacity>
                     <TouchableOpacity onPress={() => Cadastro()}>
                         <Button>Cadastra-se</Button></TouchableOpacity>
 

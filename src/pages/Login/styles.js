@@ -13,7 +13,6 @@ export const Title = styled.Text`
   font-size: 20px;
   font-weight: bold;
   color: #000;
-  font-style: arial;
 `;
 
 export const UpperTitle = styled(Title)`
