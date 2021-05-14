@@ -13,3 +13,9 @@ DISCIPLINA: PROGRAMAÇÃO PARA DISPOSITIVOS MÓVEIS.
 #### [Francisco Iarlyson Santana de Andrade](https://github.com/Iarlyson)
 
 #### [José Jonas Gomes da Silva Cavalcante](https://github.com/Jonas-Gomes)
+
+### Divisão de Tarefas
+
+#### Daniel: JWT token, asyncstorage e contexto;
+#### Iarlyson: Tela de Cadastro e Login;
+#### Jonas: Tela de dashboard e detalhamento da disciplina;
