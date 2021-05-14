@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {Container, UpperTitle, Label, Input, Button} from './styles'
 

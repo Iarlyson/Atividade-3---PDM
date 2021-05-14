@@ -22,7 +22,7 @@ export default function Login() {
     }
 
     useEffect(() => {
-        if (signed) Navigation.navigate("Home");
+        if (signed) Navigation.navigate("Dashboard");
     }, [signed, student]);
 
 
