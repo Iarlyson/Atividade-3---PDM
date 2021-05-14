@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import api from '../../services/api';
-import {Container, UpperTitle, Label, Info} from './styles';
+import {Container, UpperTitle, Label, Info, Button} from './styles';
 import {useNavigation} from '@react-navigation/native'
 
 export default function InfoDisc () {
@@ -11,8 +11,8 @@ export default function InfoDisc () {
     const [email, getEmail] = useState("");
     const Navigation = useNavigation();
 
-    function Disciplina(){
-        Navigation.navigate("Disciplina");
+    function Home(){
+        Navigation.navigate("Home");
     };
 
     useEffect(() =>{
@@ -32,8 +32,11 @@ export default function InfoDisc () {
 
     return (
         <Container>
-                <UpperTitle>Dashboard Page</UpperTitle>
-                
+                <UpperTitle>Sobre a disciplina</UpperTitle>
+
+                <TouchableOpacity onPress={() => Home()}>
+                    <Button>Logout</Button></TouchableOpacity>
+
                 <Label>Disciplina:</Label>
                 <Info>Nome da disciplina</Info>
 

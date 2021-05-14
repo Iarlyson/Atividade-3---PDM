@@ -19,6 +19,9 @@ export default function Dashboard () {
         <Container>
                 <UpperTitle>Dashboard Page</UpperTitle>
                 
+                <TouchableOpacity onPress={() => Home()}>
+                    <Button>Logout</Button></TouchableOpacity>
+
                 <Label>Nome do Aluno:</Label>
                 <Info>{student.name}</Info>
 
