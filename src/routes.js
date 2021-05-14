@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard"
 import Cadastro from "./pages/Cadastro"
 import Login from "./pages/Login"
+import InfoDisc from "./pages/InformaçoesDisciplina"
+
 
 const Stack = createStackNavigator();
 
@@ -12,6 +14,9 @@ const Route = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen name="InfoDisc" component={InfoDisc} options={{
+                    headerShown: false
+                }} />
                 <Stack.Screen name="Cadastro" component={Cadastro} options={{
                     headerShown: false
                 }} />
