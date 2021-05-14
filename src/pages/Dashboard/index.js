@@ -1,27 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import api from '../../services/api'
 
-export default function Cadastro() {
+export default function Dashboard() {
 
     const [name, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
-    async function Cadastroalunos(name, email, password) {
-        try {
-            await api.post(`discentes`, {
-                name,
-                email,
-                password
-            })
-            alert("Adcionado !")
-        } catch (err) {
-            alert('erro ao Adcionar');
-            alert(err);
+    useEffect(() =>{
+
+        async function exibir() {
+            try {
+                await api.post(`discentes`, {
+                    name ,
+                    email,
+                    password
+                })
+                alert("Adcionado !")
+            } catch (err) {
+                alert('erro ao Adcionar');
+                alert(err);
+            }
         }
-    }
+    })
+    
+
+
 
     return (
         <>
@@ -40,14 +45,6 @@ export default function Cadastro() {
                     placeholderTextColor="#aaaaaa"
                     onChangeText={email => setEmail(email)}
                     value={email}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    placeholder='Senha'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={password => setPassword(password)}
-                    value={password}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />

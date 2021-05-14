@@ -2,39 +2,40 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import api from '../../services/api'
+import {useNavigation} from '@react-navigation/native'
 
-export default function Cadastro() {
+export default function Login() {
 
-    const [name, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const Navigation = useNavigation();
 
-    async function Cadastroalunos(name, email, password) {
+    function Cadastro(){
+        Navigation.navigate("Cadastro");
+    };
+
+    function Autenticar(email, password) {
         try {
-            await api.post(`discentes`, {
-                name,
+            api.post(`/discentes/auth`, {
                 email,
                 password
-            })
-            alert("Adcionado !")
-        } catch (err) {
-            alert('erro ao Adcionar');
-            alert(err);
+            }).then(function (response) {
+                Navigation.navigate("Home");
+                console.log(response);
+                alert("Autenticado !")
+              }).catch(function (error) {
+                alert('erro ao Autenticado');
+                console.log(error);
+              })
+        } catch (error) {
+            alert("teste "+error);
         }
     }
 
     return (
         <>
             <View>
-                <Text>Cadastro de Aluno</Text>
-                <TextInput
-                    placeholder='Nome'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={name => setNome(name)}
-                    value={name}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
+                <Text>Login de Aluno</Text>
                 <TextInput
                     placeholder='E-mail'
                     placeholderTextColor="#aaaaaa"
@@ -52,9 +53,12 @@ export default function Cadastro() {
                     autoCapitalize="none"
                 />
                 <TouchableOpacity onPress={() => {
-                    Cadastroalunos(name, email, password).then()
+                    Autenticar(email, password)
                 }}>
-                    <Text>Cadastrar</Text></TouchableOpacity>
+                    <Text>Autenticar</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => Cadastro()}>
+                    <Text>Cadastra-se</Text></TouchableOpacity>
+
             </View>
         </>
     )
