@@ -33,6 +33,18 @@ export const Info = styled.Text`
   font-weight: bold;
 `;
 
-
-
-
+export const Button = styled.Text`
+  color: #fff;
+  position: absolute;
+  top: -240px;
+  left: 120px;
+  background-color: #c02e21;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 2px;
+  height: 30px;
+  width: 90px;
+  padding-top: 3px;
+  box-shadow: 2px 2px 1px #aaaaaa;
+`;
